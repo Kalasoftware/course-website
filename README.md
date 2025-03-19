@@ -1,7 +1,7 @@
 # Video Course Platform
 
 A modern video course platform built with Node.js, Express, and MySQL, featuring video progress tracking, notes system, and subtitle support.
-
+Webite Is Live At (https://course.priyatal.buzz/)
 ## Features
 
 - 🎥 Video Progress Tracking
