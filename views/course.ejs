@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= courseName %> - Course Platform</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/js/main.js"></script>
+</head>
+<body>
+    <div class="nav-header">
+        <button class="theme-toggle" onclick="toggleTheme()">🌓</button>
+        <div class="user-nav">
+            <a href="/courses" class="back-btn">← Back to Courses</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1><%= courseName %></h1>
+        
+        <div class="module-list">
+            <% if (modules && modules.length > 0) { %>
+                <% modules.forEach(function(module) { %>
+                    <div class="module-card">
+                        <h2><%= module.name %></h2>
+                        <ul class="video-list">
+                            <% if (module.videos && module.videos.length > 0) { %>
+                                <% module.videos.forEach(function(video) { %>
+                                    <li>
+                                        <a href="/video/<%= courseName %>/<%= module.name %>/<%= video %>">
+                                            <%= video %>
+                                            <% if (completionMap && completionMap[video] >= 95) { %>
+                                                <span class="completion-badge">Completed</span>
+                                            <% } else if (completionMap && completionMap[video] > 0) { %>
+                                                <div class="progress-bar">
+                                                    <div class="progress-fill" style="width: <%= completionMap[video] %>%"></div>
+                                                </div>
+                                            <% } %>
+                                        </a>
+                                    </li>
+                                <% }) %>
+                            <% } else { %>
+                                <li>No videos available</li>
+                            <% } %>
+                        </ul>
+                    </div>
+                <% }) %>
+            <% } else { %>
+                <p>No modules available</p>
+            <% } %>
+        </div>
+    </div>
+</body>
+</html>

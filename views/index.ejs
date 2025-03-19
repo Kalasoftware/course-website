@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Course Platform</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/js/main.js"></script>
+</head>
+<body>
+    <div class="nav-header">
+        <button class="theme-toggle" onclick="toggleTheme()">🌓</button>
+        <div class="user-nav">
+            <% if (locals.user) { %>
+                <span>Welcome, <%= user.username %></span>
+                <a href="/logout" class="logout-btn">Logout</a>
+            <% } else { %>
+                <a href="/login" class="btn">Login</a>
+            <% } %>
+        </div>
+    </div>
+    
+    <div class="container">
+        <!-- Resume Watching Section -->
+        <% if (typeof recentVideos !== 'undefined' && recentVideos && recentVideos.length > 0) { %>
+            <section class="resume-watching">
+                <h2>Continue Watching</h2>
+                <div class="recent-videos">
+                    <% recentVideos.forEach(video => { %>
+                        <a href="/video/<%= video.course_name %>/<%= video.module_name %>/<%= video.video_name %>" 
+                           class="recent-video-card">
+                            <h3><%= (video.video_name || '').replace('.mp4', '') %></h3>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: <%= video.progress_percentage || 0 %>%"></div>
+                            </div>
+                            <span class="course-name"><%= video.course_name %></span>
+                            <span class="module-name"><%= video.module_name %></span>
+                            <span class="last-watched">Last watched: <%= new Date(video.updated_at).toLocaleDateString() %></span>
+                        </a>
+                    <% }); %>
+                </div>
+            </section>
+        <% } %>
+
+        <!-- Courses Section -->
+        <section class="courses">
+            <h2>Your Courses</h2>
+            <div class="course-grid">
+                <% if (typeof courses !== 'undefined' && courses && courses.length > 0) { %>
+                    <% courses.forEach(course => { %>
+                        <a href="/course/<%= course.name %>" class="course-card">
+                            <h3><%= course.name %></h3>
+                            <div class="course-stats">
+                                <span><%= course.moduleCount || 0 %> modules</span>
+                                <% if (course.completedCount && course.completedCount > 0) { %>
+                                    <span class="completion-badge">
+                                        <%= course.completedCount %> completed
+                                    </span>
+                                <% } %>
+                            </div>
+                        </a>
+                    <% }); %>
+                <% } else { %>
+                    <p>No courses available</p>
+                <% } %>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

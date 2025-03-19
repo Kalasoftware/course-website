@@ -1,0 +1,146 @@
+.video-page-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+    padding: 1rem;
+}
+
+.video-container {
+    position: relative;
+    width: 100%;
+    background: var(--card-bg);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.video-controls {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--card-bg);
+    border-radius: 0 0 10px 10px;
+}
+
+#quality-selector {
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-color);
+    color: var(--text-color);
+}
+
+.notes-section {
+    background: var(--card-bg);
+    border-radius: 10px;
+    padding: 1rem;
+}
+
+.note-input-container {
+    margin-bottom: 1rem;
+}
+
+#note-input {
+    width: 100%;
+    min-height: 100px;
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    background: var(--bg-color);
+    color: var(--text-color);
+}
+
+.note-item {
+    background: var(--bg-color);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.note-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.timestamp {
+    color: var(--accent-color);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.timestamp:hover {
+    text-decoration: underline;
+}
+
+.jump-btn {
+    padding: 0.25rem 0.5rem;
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.jump-btn:hover {
+    opacity: 0.9;
+}
+
+.note-text {
+    margin: 0;
+    white-space: pre-wrap;
+}
+
+@media (max-width: 768px) {
+    .video-page-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+.subtitle-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+#toggle-subtitles {
+    padding: 0.5rem 1rem;
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#toggle-subtitles.active {
+    background: #4CAF50;
+}
+
+#subtitle-size {
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-color);
+    color: var(--text-color);
+}
+
+/* Subtitle styles */
+::cue {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+.subtitle-size-small ::cue {
+    font-size: 16px;
+}
+
+.subtitle-size-medium ::cue {
+    font-size: 20px;
+}
+
+.subtitle-size-large ::cue {
+    font-size: 24px;
+}

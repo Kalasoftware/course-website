@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= videoName %> - <%= courseName %></title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/video.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div class="nav-header">
+        <button class="theme-toggle" onclick="toggleTheme()">🌓</button>
+        <div class="user-nav">
+            <a href="/course/<%= courseName %>" class="back-btn">← Back to Course</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="video-page-layout">
+            <div class="video-section">
+                <h1><%= videoName.replace('.mp4', '') %></h1>
+                <div class="video-container">
+                    <video controls
+                           data-video-id="<%= videoName %>"
+                           data-course-name="<%= courseName %>"
+                           data-module-name="<%= moduleName %>">
+                        <source src="<%= videoPath %>" type="video/mp4">
+                        <% if (subtitlePath) { %>
+                            <track kind="subtitles" 
+                                   src="<%= subtitlePath %>" 
+                                   srclang="en" 
+                                   label="English" 
+                                   default>
+                        <% } %>
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-controls">
+                        <select id="quality-selector">
+                            <option value="720p">720p</option>
+                            <option value="480p">480p</option>
+                            <option value="360p">360p</option>
+                        </select>
+                        <div class="subtitle-controls">
+                            <button id="toggle-subtitles">CC</button>
+                            <select id="subtitle-size">
+                                <option value="small">Small</option>
+                                <option value="medium" selected>Medium</option>
+                                <option value="large">Large</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="notes-section">
+                <h2>Notes</h2>
+                <div class="note-input-container">
+                    <textarea id="note-input" placeholder="Add a note..."></textarea>
+                    <button id="save-note">Save Note</button>
+                </div>
+                <div id="notes-container"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/main.js"></script>
+    <script src="/js/videoPlayer.js"></script>
+    <script src="/js/progress.js"></script>
+</body>
+</html>
